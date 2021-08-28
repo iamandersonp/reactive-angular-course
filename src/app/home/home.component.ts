@@ -45,14 +45,19 @@ export class HomeComponent implements OnInit {
   }
 
   ReloadCourses() {
-    this.loadingService.LoadingOn();
     const courses$: Observable<Course[]> =
-      this.coursesService.LoadAlCourses().pipe(
-        map((courses) => courses.sort(sortCoursesBySeqNo)),
-        finalize(() => this.loadingService.LoadingOff())
+      this.coursesService
+        .LoadAlCourses()
+        .pipe(
+          map((courses) => courses.sort(sortCoursesBySeqNo))
+        );
+
+    const loadCourses$ =
+      this.loadingService.ShowLoaderUntilCompleted(
+        courses$
       );
 
-    this.beginnerCourses$ = courses$.pipe(
+    this.beginnerCourses$ = loadCourses$.pipe(
       map((courses) =>
         courses.filter(
           (course) => (course.category = 'BEGINER')
@@ -60,7 +65,7 @@ export class HomeComponent implements OnInit {
       )
     );
 
-    this.advancedCourses$ = courses$.pipe(
+    this.advancedCourses$ = loadCourses$.pipe(
       map((courses) =>
         courses.filter(
           (course) => (course.category = 'ADVANCED')
