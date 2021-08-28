@@ -43,6 +43,10 @@ export class HomeComponent implements OnInit {
   constructor(private coursesService: CoursesService) {}
 
   ngOnInit() {
+    this.ReloadCourses();
+  }
+
+  ReloadCourses() {
     const courses$: Observable<Course[]> =
       this.coursesService
         .LoadAlCourses()
