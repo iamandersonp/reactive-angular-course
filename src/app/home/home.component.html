@@ -4,7 +4,7 @@
   <mat-tab-group>
     <mat-tab label="Beginners">
       <courses-card-list
-        [courses]="beginnerCourses$"
+        [courses]="beginnerCourses$ | async"
         |
         async
         (coursesChanged)="ReloadCourses()"
@@ -13,7 +13,7 @@
 
     <mat-tab label="Advanced">
       <courses-card-list
-        [courses]="advancedCourses$"
+        [courses]="advancedCourses$ | async"
         |
         async
         (coursesChanged)="ReloadCourses()"

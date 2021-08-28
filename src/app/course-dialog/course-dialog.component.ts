@@ -21,6 +21,7 @@ import * as moment from 'moment';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { CoursesService } from '../services/courses.service';
+import { LoadingService } from '../loading/loading.service';
 
 @Component({
   selector: 'course-dialog',
@@ -38,7 +39,8 @@ export class CourseDialogComponent
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) course: Course,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    loadingService: LoadingService
   ) {
     this.course = course;
 
