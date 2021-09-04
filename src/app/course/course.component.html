@@ -7,29 +7,6 @@
       [src]="data.course?.iconUrl"
       *ngIf="data.course"
     />
-
-    <table
-      class="lessons-table mat-elevation-z7"
-      *ngIf="data.lessons.length"
-    >
-      <thead>
-        <th>#</th>
-        <th>Description</th>
-        <th>Duration</th>
-      </thead>
-
-      <tr
-        class="lesson-row"
-        *ngFor="let lesson of data.lessons"
-      >
-        <td class="seqno-cell">{{ lesson.seqNo }}</td>
-        <td class="description-cell">
-          {{ lesson.description }}
-        </td>
-        <td class="duration-cell">
-          {{ lesson.duration }}
-        </td>
-      </tr>
-    </table>
+    <list-lesson [lessons]="data.lessons"></list-lesson>
   </div>
 </ng-container>
