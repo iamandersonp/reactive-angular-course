@@ -18,7 +18,7 @@ import {
   FormGroup
 } from '@angular/forms';
 import * as moment from 'moment';
-import { CourseStore } from '../services/course.tore';
+import { CourseStore } from '../services/course.store';
 
 @Component({
   selector: 'course-dialog',

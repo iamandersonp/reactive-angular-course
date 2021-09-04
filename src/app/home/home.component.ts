@@ -19,7 +19,7 @@ import {
   shareReplay,
   tap
 } from 'rxjs/operators';
-import { CourseStore } from '../services/course.tore';
+import { CourseStore } from '../services/course.store';
 
 @Component({
   selector: 'home',
