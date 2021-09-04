@@ -11,6 +11,28 @@ import { Lesson } from '../model/lesson';
 export class CoursesService {
   constructor(private http: HttpClient) {}
 
+  LoadCourseById(courseId: number): Observable<Course> {
+    return this.http
+      .get<Course>(`/api/courses/${courseId}`)
+      .pipe(shareReplay());
+  }
+
+  LoadAllCourseLessons(
+    courseId: number
+  ): Observable<Lesson[]> {
+    return this.http
+      .get<Lesson[]>('/api/lessons', {
+        params: {
+          pageSize: '1000',
+          courseId: courseId.toString()
+        }
+      })
+      .pipe(
+        map((lesson) => lesson['payload']),
+        shareReplay()
+      );
+  }
+
   public LoadAlCourses(): Observable<Course[]> {
     return this.http.get<Course[]>('/api/courses').pipe(
       map((res) => res['payload']),
